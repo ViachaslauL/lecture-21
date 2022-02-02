@@ -6,8 +6,7 @@ import org.hibernate.annotations.Formula;
 import javax.persistence.*;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "classes")
@@ -25,11 +24,4 @@ public class SchoolClass {
 
     @Formula(value = "concat(number, character)")
     private String classCode;
-
-    @Override
-    public String toString() {
-        return "SchoolClass{" +
-                "classCode='" + classCode + '\'' +
-                '}';
-    }
 }

@@ -13,7 +13,7 @@ import javax.transaction.Transactional;
 @Repository
 public class SchoolClassDAOImpl implements SchoolClassDAO {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SchoolClassDAOImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(SchoolClassDAOImpl.class);
 
     private EntityManager entityManager;
 
@@ -29,10 +29,11 @@ public class SchoolClassDAOImpl implements SchoolClassDAO {
 
         try {
             entityManager.persist(schoolClass);
+            return schoolClass;
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
-        return schoolClass;
+        return null;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class SchoolClassDAOImpl implements SchoolClassDAO {
         try {
             schoolClass = entityManager.find(SchoolClass.class, id);
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return schoolClass;
     }

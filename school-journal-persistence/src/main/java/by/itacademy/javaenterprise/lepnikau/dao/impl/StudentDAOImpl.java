@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 @Repository
 public class StudentDAOImpl implements StudentDAO {
 
-    private static final Logger LOG = LoggerFactory.getLogger(StudentDAOImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(StudentDAOImpl.class);
 
     private EntityManager entityManager;
 
@@ -30,7 +30,7 @@ public class StudentDAOImpl implements StudentDAO {
             entityManager.persist(student);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             entityManager.getTransaction().rollback();
         }
         return student;
@@ -45,7 +45,7 @@ public class StudentDAOImpl implements StudentDAO {
         try {
             student = entityManager.find(Student.class, id);
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return student;
     }
@@ -59,7 +59,7 @@ public class StudentDAOImpl implements StudentDAO {
         try {
             fondedMark = entityManager.find(Student.class, student.getId());
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
 
         if (fondedMark != null) {
@@ -69,7 +69,7 @@ public class StudentDAOImpl implements StudentDAO {
                 entityManager.getTransaction().commit();
                 return true;
             } catch (Exception e) {
-                LOG.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
                 entityManager.getTransaction().rollback();
             }
         }
@@ -83,7 +83,7 @@ public class StudentDAOImpl implements StudentDAO {
         try {
             student = entityManager.find(Student.class, student.getId());
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
 
         if (student != null) {
@@ -93,7 +93,7 @@ public class StudentDAOImpl implements StudentDAO {
                 entityManager.getTransaction().commit();
                 return true;
             } catch (Exception e) {
-                LOG.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
                 entityManager.getTransaction().rollback();
             }
         }

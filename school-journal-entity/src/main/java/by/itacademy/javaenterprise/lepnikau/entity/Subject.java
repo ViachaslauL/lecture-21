@@ -4,10 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 
+@Data
 @Entity
-@Getter
-@Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "subjects")
@@ -19,12 +17,4 @@ public class Subject {
 
     @Column(name = "subject_name")
     private String name;
-
-    @Override
-    public String toString() {
-        return "Subject{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

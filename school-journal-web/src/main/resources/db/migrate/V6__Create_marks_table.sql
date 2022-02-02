@@ -1,9 +1,9 @@
 CREATE TABLE IF NOT EXISTS `marks`
 (
-    `id`         int NOT NULL AUTO_INCREMENT,
-    `student_id` int NOT NULL,
+    `id`         bigint NOT NULL AUTO_INCREMENT,
+    `student_id` bigint NOT NULL,
     `mark`       int  NOT NULL,
-    `subject_id` int NOT NULL,
+    `subject_id` bigint NOT NULL,
     `date`       date NOT NULL,
     PRIMARY KEY (`id`),
     KEY `subject_id` (`subject_id`),

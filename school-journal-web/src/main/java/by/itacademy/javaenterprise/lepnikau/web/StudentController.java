@@ -4,7 +4,7 @@ import by.itacademy.javaenterprise.lepnikau.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -15,7 +15,7 @@ public class StudentController {
 
     @GetMapping("/student")
     @ResponseBody
-    public String findStudent(@RequestParam(name = "id") String id) {
+    public String findStudent(@RequestBody String id) {
         return studentService.findStudent(id).toString();
     }
 }

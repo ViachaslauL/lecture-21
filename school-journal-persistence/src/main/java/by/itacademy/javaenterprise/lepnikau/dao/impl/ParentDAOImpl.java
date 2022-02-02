@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 
 public class ParentDAOImpl implements ParentDAO {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ParentDAOImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(ParentDAOImpl.class);
 
     private EntityManager entityManager;
 
@@ -28,7 +28,7 @@ public class ParentDAOImpl implements ParentDAO {
             entityManager.persist(parent);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             entityManager.getTransaction().rollback();
         }
         return parent;
@@ -43,7 +43,7 @@ public class ParentDAOImpl implements ParentDAO {
         try {
             parent = entityManager.find(Parent.class, id);
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return parent;
     }
@@ -57,7 +57,7 @@ public class ParentDAOImpl implements ParentDAO {
         try {
             fondedParent = entityManager.find(Parent.class, parent.getId());
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
 
         if (fondedParent != null) {
@@ -67,7 +67,7 @@ public class ParentDAOImpl implements ParentDAO {
                 entityManager.getTransaction().commit();
                 return true;
             } catch (Exception e) {
-                LOG.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
                 entityManager.getTransaction().rollback();
             }
         }
@@ -81,7 +81,7 @@ public class ParentDAOImpl implements ParentDAO {
         try {
             parent = entityManager.find(Parent.class, parent.getId());
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
 
         if (parent != null) {
@@ -91,7 +91,7 @@ public class ParentDAOImpl implements ParentDAO {
                 entityManager.getTransaction().commit();
                 return true;
             } catch (Exception e) {
-                LOG.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
                 entityManager.getTransaction().rollback();
             }
         }

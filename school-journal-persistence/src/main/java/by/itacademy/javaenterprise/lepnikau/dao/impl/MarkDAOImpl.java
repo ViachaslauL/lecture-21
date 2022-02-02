@@ -10,7 +10,7 @@ import javax.persistence.PersistenceContext;
 
 public class MarkDAOImpl implements MarkDAO {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MarkDAOImpl.class);
+    private static final Logger log = LoggerFactory.getLogger(MarkDAOImpl.class);
 
     private EntityManager entityManager;
 
@@ -28,7 +28,7 @@ public class MarkDAOImpl implements MarkDAO {
             entityManager.persist(mark);
             entityManager.getTransaction().commit();
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             entityManager.getTransaction().rollback();
         }
         return mark;
@@ -43,7 +43,7 @@ public class MarkDAOImpl implements MarkDAO {
         try {
             mark = entityManager.find(Mark.class, id);
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
         return mark;
     }
@@ -57,7 +57,7 @@ public class MarkDAOImpl implements MarkDAO {
         try {
             fondedMark = entityManager.find(Mark.class, mark.getId());
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
 
         if (fondedMark != null) {
@@ -67,7 +67,7 @@ public class MarkDAOImpl implements MarkDAO {
                 entityManager.getTransaction().commit();
                 return true;
             } catch (Exception e) {
-                LOG.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
                 entityManager.getTransaction().rollback();
             }
         }
@@ -81,7 +81,7 @@ public class MarkDAOImpl implements MarkDAO {
         try {
             mark = entityManager.find(Mark.class, mark.getId());
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
 
         if (mark != null) {
@@ -91,7 +91,7 @@ public class MarkDAOImpl implements MarkDAO {
                 entityManager.getTransaction().commit();
                 return true;
             } catch (Exception e) {
-                LOG.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
                 entityManager.getTransaction().rollback();
             }
         }

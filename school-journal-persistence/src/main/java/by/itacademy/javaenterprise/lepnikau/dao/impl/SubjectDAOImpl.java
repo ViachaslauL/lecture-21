@@ -5,14 +5,16 @@ import by.itacademy.javaenterprise.lepnikau.entity.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 public class SubjectDAOImpl implements SubjectDAO {
-    private static final Logger LOG = LoggerFactory.getLogger(SubjectDAOImpl.class);
+
+    private static final Logger log = LoggerFactory.getLogger(SubjectDAOImpl.class);
 
     private EntityManager entityManager;
 
@@ -28,15 +30,30 @@ public class SubjectDAOImpl implements SubjectDAO {
 
         try {
             entityManager.persist(subject);
+            return subject;
         } catch (Exception e) {
-            LOG.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
-        return subject;
+        return null;
     }
 
     @Override
+    @Transactional
     public Subject get(Long id) {
+        try{
+            return entityManager.find(Subject.class, id);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
         return null;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Subject> findAll() {
+        return entityManager
+                .createQuery("select s from Subject s", Subject.class)
+                .getResultList();
     }
 
     @Override

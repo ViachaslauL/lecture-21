@@ -1,10 +1,10 @@
 CREATE TABLE IF NOT EXISTS `teachers`
 (
-    `id`         int NOT NULL AUTO_INCREMENT,
+    `id`         bigint NOT NULL AUTO_INCREMENT,
     `last_name`  varchar(32) NOT NULL,
     `first_name` varchar(32) NOT NULL,
     `patronymic` varchar(32) NOT NULL,
-    `subject_id` int NOT NULL,
+    `subject_id` bigint,
     PRIMARY KEY (`id`),
     KEY `subject_id` (`subject_id`)
 ) ENGINE = InnoDB

@@ -1,10 +1,10 @@
 CREATE TABLE IF NOT EXISTS `students`
 (
-    `id`         int NOT NULL AUTO_INCREMENT,
+    `id`         bigint NOT NULL AUTO_INCREMENT,
     `last_name`  varchar(32) NOT NULL,
     `first_name` varchar(32) NOT NULL,
     `patronymic` varchar(32) NOT NULL,
-    `class_id`   int NOT NULL,
+    `class_id`   bigint NOT NULL,
     `street` varchar(255) NOT NULL,
     `house_number` int NOT NULL,
     `flat_number` int NOT NULL,

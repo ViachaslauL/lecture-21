@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -27,7 +26,7 @@ public class SpringPersistenceConfig {
     private Environment environment;
 
     @Bean
-    public BasicDataSource basicDataSource() {
+    public BasicDataSource dataSource() {
 
         BasicDataSource dataSource = new BasicDataSource();
 
@@ -50,8 +49,9 @@ public class SpringPersistenceConfig {
 
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean =
                 new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(basicDataSource());
-        entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter());
+        entityManagerFactoryBean.setDataSource(dataSource());
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
         entityManagerFactoryBean.setPackagesToScan("by.itacademy.javaenterprise.lepnikau.entity");
         entityManagerFactoryBean.setJpaProperties(hibernateProperties());
 
@@ -60,20 +60,17 @@ public class SpringPersistenceConfig {
 
     @Bean
     public JpaTransactionManager jpaTransactionManager() {
-        return new JpaTransactionManager(
-                entityManagerFactory().getNativeEntityManagerFactory());
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        return transactionManager;
     }
 
     @Bean
     public TransactionTemplate transactionTemplate() {
         TransactionTemplate template = new TransactionTemplate();
         template.setTransactionManager(jpaTransactionManager());
-        template.setTimeout(120);
+        template.setTimeout(10000);
         return template;
-    }
-
-    public JpaVendorAdapter jpaVendorAdapter() {
-        return new HibernateJpaVendorAdapter();
     }
 
     private Properties hibernateProperties() {

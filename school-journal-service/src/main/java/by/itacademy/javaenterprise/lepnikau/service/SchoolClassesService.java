@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SchoolClassesService {
 
-    private SchoolClassDAO schoolClassDAO;
+    private final SchoolClassDAO schoolClassDAO;
 
     @Autowired
     public SchoolClassesService(SchoolClassDAO schoolClassDAO) {

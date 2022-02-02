@@ -1,8 +1,7 @@
 CREATE TABLE IF NOT EXISTS `subjects`
 (
-    `id`           int NOT NULL AUTO_INCREMENT,
-    `subject_name` varchar(32) NOT NULL,
-    PRIMARY KEY (`id`)
+    `id`           bigint primary key auto_increment,
+    `subject_name` varchar(32) NOT NULL
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 0
   DEFAULT CHARSET = utf8mb4;
